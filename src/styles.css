@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --landing-gradient: linear-gradient(135deg, #f8faff 0%, #f0f4ff 100%);
+    --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+.bg-gradient-primary{
+  background: var(--primary-gradient);
+}
+html {
+  scroll-behavior: smooth;
+}
