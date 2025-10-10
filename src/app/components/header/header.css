@@ -1,0 +1,86 @@
+/* Navbar base */
+.navbar {
+  background-color: #fff;
+  transition: var(--transition);
+  z-index: 1000;
+}
+
+/* Brand styling */
+.navbar-brand span {
+  font-size: 1.2rem;
+  letter-spacing: 0.5px;
+}
+
+.navbar-brand img {
+  transition: transform 0.3s ease;
+}
+.navbar-brand:hover img {
+  transform: scale(1.05);
+}
+
+/* Nav link styling */
+.nav-link {
+  position: relative;
+  color: #555;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.nav-link:hover {
+  color: #000;
+}
+
+.nav-link.active {
+  color: #333;
+}
+
+/* Underline transition for active link */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: var(--primary-gradient);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* Login button hover */
+.login-btn {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 992px) {
+  .navbar-collapse {
+    background: #fff;
+    border-radius: 0 0 10px 10px;
+    box-shadow: var(--card-shadow);
+    padding: 1rem 0;
+  }
+
+  .nav-item {
+    margin: 0.5rem 0;
+    text-align: center;
+  }
+
+  .nav-link::after {
+    display: none; /* hide underline on mobile */
+  }
+
+  .login-btn {
+    display: inline-block;
+    margin-top: 0.5rem;
+  }
+}
