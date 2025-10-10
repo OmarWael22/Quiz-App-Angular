@@ -1,1 +1,33 @@
-<p>login works!</p>
+<div class="login-wrapper">
+    <div class="login-card">
+        <h2>Welcome Back 👋</h2>
+        <p>Please log in to your account</p>
+        <form (submit)="onSubmit($event)">
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" name="email" id="email" [(ngModel)]="email" placeholder="you@example.com" required>
+            </div>
+
+            <br>
+
+            <div class="form-group">
+                <label for="password" buttonColor="'yellow'">Password</label>
+                <input type="password" name="password" id="password" [(ngModel)]="password"
+                    placeholder="Enter your password" required>
+            </div>
+
+            <br>
+            <button type="submit" buttonColor="black">Login</button>
+
+            <p class="signup-text">
+                Don’t have an account? <a routerLink="/signup">Sign up</a>
+            </p>
+
+            @if(errMsg) {
+            <p class="error">{{ errMsg }}</p>
+            }
+
+        </form>
+    </div>
+</div>

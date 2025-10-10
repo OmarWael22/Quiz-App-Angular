@@ -1,0 +1,30 @@
+<div class="signup-wrapper">
+    <div class="signup-card">
+        <h2>Create Account ✨</h2>
+        <p>Join us and start your journey today!</p>
+
+        <form [formGroup]="signupForm" (ngSubmit)="onSignup()">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" formControlName="name" placeholder="John Doe" required />
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" formControlName="email" placeholder="you@example.com" required />
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" formControlName="password" placeholder="Enter your password"
+                    required />
+            </div>
+
+            <button type="submit" [disabled]="signupForm.invalid">Sign Up</button>
+        </form>
+
+        <p class="login-text">
+            Already have an account? <a class="login-btn" routerLink="/login">Login</a>
+        </p>
+    </div>
+</div>

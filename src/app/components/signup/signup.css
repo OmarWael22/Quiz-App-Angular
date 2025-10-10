@@ -1,5 +1,4 @@
-/* Background */
-.login-wrapper {
+.signup-wrapper {
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -8,18 +7,16 @@
     font-family: "Poppins", sans-serif;
 }
 
-/* Card container */
-.login-card {
+.signup-card {
     background: white;
     padding: 40px 35px;
     border-radius: 15px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     width: 100%;
-    max-width: 380px;
+    max-width: 400px;
     text-align: center;
 }
 
-/* Title and text */
 h2 {
     margin-bottom: 10px;
     color: #2d3436;
@@ -27,11 +24,10 @@ h2 {
 
 p {
     color: #636e72;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     font-size: 0.95rem;
 }
 
-/* Form styling */
 .form-group {
     text-align: left;
     margin-bottom: 20px;
@@ -55,11 +51,10 @@ input {
 
 input:focus {
     outline: none;
-    border-color: #6c5ce7;
-    box-shadow: 0 0 5px rgba(108, 92, 231, 0.3);
+    border-color: #0984e3;
+    box-shadow: 0 0 6px rgba(9, 132, 227, 0.3);
 }
 
-/* Button */
 button {
     width: 100%;
     padding: 12px;
@@ -84,25 +79,24 @@ button:disabled {
     cursor: not-allowed;
 }
 
-/* Signup link */
-.signup-text {
+.login-text {
     margin-top: 20px;
     font-size: 0.9rem;
 }
 
-.signup-text a {
-    color: #6c5ce7;
+.login-text a {
+    color: #0984e3;
     text-decoration: none;
     font-weight: 500;
 }
 
-.signup-text a:hover {
+.login-text a:hover {
     text-decoration: underline;
 }
 
 /* Responsive */
 @media (max-width: 480px) {
-    .login-card {
+    .signup-card {
         padding: 30px 25px;
     }
 
@@ -114,8 +108,6 @@ button:disabled {
         font-size: 0.95rem;
     }
 }
-
-.error {
-    color: red;
-    font-weight: bold;
+.login-btn {
+    cursor: pointer;
 }
