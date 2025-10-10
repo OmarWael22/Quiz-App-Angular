@@ -14,18 +14,23 @@ export const routes: Routes = [
 		path: 'start-quiz',
 		loadComponent: () => import('./components/startquiz/startquiz').then(m => m.Startquiz),
 		title: 'Start Quiz'
-	},
-	{	
+    },
+	{
 		path: 'profile',
 		loadComponent: () => import('./components/profile/profile').then(m => m.Profile),
 		title: 'Profile'
-	},
+    },
+    {
+        path: 'dashboard',
+        loadComponent: () => import('./components/admin-dashboard/admin-dashboard').then(m => m.AdminDashboard),
+        title : 'DashBoard'
+    },
 	{
 		path: 'login',
 		loadComponent: () => import('./components/login/login').then(m => m.Login),
 		title: 'Login'
 	},
-	{	
+	{
 		path: 'signup',
 		loadComponent: () => import('./components/signup/signup').then(m => m.Signup),
 		title: 'Signup'
