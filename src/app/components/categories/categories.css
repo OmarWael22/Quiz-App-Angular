@@ -31,3 +31,12 @@
   max-width: 500px;
   margin: 0 auto;
 }
+.category-card {
+  transition: transform 0.2s ease;
+}
+.category-card:hover {
+  transform: translateY(-5px);
+}
+.bg-light {
+  background-color: #f8f9fa !important;
+}
