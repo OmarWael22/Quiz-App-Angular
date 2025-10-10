@@ -1,0 +1,33 @@
+.category-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  background: #fff;
+  border-radius: 15px;
+}
+
+.category-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--card-shadow);
+}
+
+.icon-wrapper {
+  width: 60px;
+  height: 60px;
+  background: var(--primary-gradient);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 24px;
+  transition: var(--transition);
+}
+
+.category-card:hover .icon-wrapper {
+  transform: rotate(10deg) scale(1.1);
+}
+
+.alert {
+  max-width: 500px;
+  margin: 0 auto;
+}
