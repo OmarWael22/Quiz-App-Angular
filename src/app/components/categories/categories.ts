@@ -54,7 +54,7 @@ export class Categories implements OnInit {
   sendQuizForm(categoryName: string) {
     if (this.quizForm.valid) {
       console.log('Quiz form submitted:', this.quizForm.value);
-      this.router.navigate(['/start-quiz'], {
+      this.router.navigate(['/exam'], {
         queryParams: {
           category: categoryName,
           ...this.quizForm.value,
