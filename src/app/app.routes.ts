@@ -23,8 +23,21 @@ export const routes: Routes = [
     {
         path: 'dashboard',
         loadComponent: () => import('./components/admin-dashboard/admin-dashboard').then(m => m.AdminDashboard),
-        title : 'DashBoard'
+        title: 'DashBoard',
+        children: [
+            {
+                path: 'categories-control',
+                loadComponent: () => import('./components/admin-dashboard/category-control/category-control').then(m => m.CategoryControl),
+
+            },
+            {
+                path: 'questions-control',
+                loadComponent: () => import('./components/admin-dashboard/question-control/question-control').then(m => m.QuestionControl),
+
+            }
+        ]
     },
+
 	{
 		path: 'login',
 		loadComponent: () => import('./components/login/login').then(m => m.Login),
