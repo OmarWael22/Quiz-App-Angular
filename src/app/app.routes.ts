@@ -11,11 +11,11 @@ export const routes: Routes = [
 		title: 'categories'
 	},
 	{
-		path: 'start-quiz',
-		loadComponent: () => import('./components/startquiz/startquiz').then(m => m.Startquiz),
-		title: 'Start Quiz'
+		path: 'grade-exam',
+		loadComponent: () => import('./components/grade-exam/grade-exam').then(m => m.GradeExam),
+		title: 'Grade Exam'
 	},
-	{	
+	{
 		path: 'profile',
 		loadComponent: () => import('./components/profile/profile').then(m => m.Profile),
 		title: 'Profile'
@@ -25,7 +25,7 @@ export const routes: Routes = [
 		loadComponent: () => import('./components/login/login').then(m => m.Login),
 		title: 'Login'
 	},
-	{	
+	{
 		path: 'signup',
 		loadComponent: () => import('./components/signup/signup').then(m => m.Signup),
 		title: 'Signup'

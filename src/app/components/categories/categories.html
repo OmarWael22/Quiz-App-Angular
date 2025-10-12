@@ -67,7 +67,7 @@
 
                 <form
                   [formGroup]="quizForm"
-                  (ngSubmit)="sendQuizForm(category.name)"
+                  (ngSubmit)="sendQuizForm(category._id)"
                 >
                   <div class="modal-body">
                     <div class="mb-3 text-start">
@@ -90,10 +90,9 @@
                     <div class="mb-3 text-start">
                       <label class="form-label fw-semibold">Difficulty</label>
                       <select class="form-select" formControlName="difficulty">
-                        <option value="any">Any</option>
-                        <option value="easy">Easy</option>
-                        <option value="medium">Medium</option>
-                        <option value="hard">Hard</option>
+                          <option value="easy">Easy</option>
+                          <option value="medium">Medium</option>
+                          <option value="hard">Hard</option>
                       </select>
                     </div>
                   </div>
