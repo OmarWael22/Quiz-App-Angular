@@ -23,7 +23,7 @@ export class Login {
                 this.router.navigate(['/']);
             },
             error: (err) => {
-                this.errMsg = err.error?.message || 'Login Failed!';  
+                this.errMsg = err.error?.message || 'Email or password are incorrect!';  
             }
         })
     

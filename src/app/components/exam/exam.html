@@ -1,0 +1,24 @@
+<div class="exam-wrapper">
+    <div class="exam-header">
+        <h2>🧠  Exam</h2>
+        <!-- <p>Questions: {{ examData['questions number'] }} | Time: {{ examData.newExam.time / 1000 }}s</p> -->
+        <p>Questions:  | Time: s</p>
+    </div>
+
+    <form (submit)="submitExam()">
+        <!-- @for(let q of ) -->
+        <!-- <div class="question-card" *ngFor="let q of [1,2,3]; let i = index"> -->
+            <!-- <p class="question-text">{{ i + 1 }}. </p> -->
+
+            <div class="choices">
+                <!-- <label *ngFor="let c of q.choices" class="choice" [class.selected]="1 === c"
+                    (click)="selectAnswer(i, c)">
+                    <input type="radio" name="question{{ i }}" [value]="c" [checked]="1 === c" />
+                    {{ c }}
+                </label> -->
+            </div>
+        <!-- </div> -->
+
+        <button type="submit" class="submit-btn">Submit Exam</button>
+    </form>
+</div>

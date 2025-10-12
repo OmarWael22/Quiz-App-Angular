@@ -36,6 +36,11 @@ export const routes: Routes = [
 		title: 'Signup'
 	},
 	{
+		path: 'exam',
+		loadComponent: () => import('./components/exam/exam').then(m => m.Exam),
+		title: 'Exam'
+	},
+	{
 		path: '**',
 		loadComponent: () => import('./components/not-found/not-found').then(m => m.NotFound),
 		title: 'Page Not Found'
