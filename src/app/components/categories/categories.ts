@@ -41,8 +41,8 @@ export class Categories implements OnInit {
         Validators.min(1),
         Validators.max(100),
       ]),
-      difficulty: new FormControl('any', [
-        Validators.pattern(/^(any|easy|medium|hard)$/),
+      difficulty: new FormControl('easy', [
+        Validators.pattern(/^(easy|medium|hard)$/),
       ]),
     });
   }
@@ -51,12 +51,12 @@ export class Categories implements OnInit {
     this.selectedCategory.set(category);
   }
 
-  sendQuizForm(categoryName: string) {
+  sendQuizForm(categoryId: string) {
     if (this.quizForm.valid) {
       console.log('Quiz form submitted:', this.quizForm.value);
       this.router.navigate(['/exam'], {
         queryParams: {
-          category: categoryName,
+          category: categoryId,
           ...this.quizForm.value,
         },
       });

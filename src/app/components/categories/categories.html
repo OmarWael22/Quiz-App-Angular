@@ -30,12 +30,10 @@
                     ⭐ {{ category.rating }} &nbsp;|&nbsp; 🔥 {{ category.popularity }}
                 </div>
 
-                <!-- Start Quiz Button -->
-                <button
-                    class="btn text-white p-2 btn-sm px-3 bg-gradient-primary"
-                    data-bs-toggle="modal"
-                    [attr.data-bs-target]="'#quizModal' + category._id"
-                    (click)="openQuizForm(category.name)"
+
+                <form
+                  [formGroup]="quizForm"
+                  (ngSubmit)="sendQuizForm(category._id)"
                 >
                     Start Quiz Now
                 </button>
@@ -63,7 +61,6 @@
                         aria-label="Close"
                         (click)="cancelQuizForm()"
                     ></button>
-                    </div>
 
                     <form
                     [formGroup]="quizForm"
@@ -88,15 +85,13 @@
                         </div>
 
                         <div class="mb-3 text-start">
-                        <label class="form-label fw-semibold">Difficulty</label>
-                        <select class="form-select" formControlName="difficulty">
-                            <option value="any">Any</option>
-                            <option value="easy">Easy</option>
-                            <option value="medium">Medium</option>
-                            <option value="hard">Hard</option>
-                        </select>
-                        </div>
-                    </div>
+                      <label class="form-label fw-semibold">Difficulty</label>
+                      <select class="form-select" formControlName="difficulty">
+                          <option value="easy">Easy</option>
+                          <option value="medium">Medium</option>
+                          <option value="hard">Hard</option>
+                      </select>
+                     </div>
 
                     <div class="modal-footer border-0">
                         <button
