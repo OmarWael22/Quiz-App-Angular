@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, Output, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CategoryService } from '../../../services/category-service';
 import { Category } from '../../../utils/types';
@@ -16,6 +16,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
     private modalService = inject(NgbModal);
 
     categories: Category[] = [];
+
     loading = true;
     error: string | null = null;
 
@@ -37,7 +38,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
         this.loading = true;
         this.categoryService.getCategories().subscribe({
         next: (data) => {
-            this.categories = data;
+                this.categories = data;
+                console.log(this.categories);
             this.loading = false;
         },
         error: (err) => {

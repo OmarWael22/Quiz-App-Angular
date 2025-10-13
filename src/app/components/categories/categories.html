@@ -23,23 +23,22 @@
                 <div class="icon-wrapper mx-auto mb-3">
                     <i class="bi bi-book fs-2"></i>
                 </div>
-
                 <h5 class="fw-bold">{{ category.name }}</h5>
                 <p class="text-muted small mb-2">{{ category.description }}</p>
                 <div class="ratings text-muted small mb-3">
                     ⭐ {{ category.rating }} &nbsp;|&nbsp; 🔥 {{ category.popularity }}
                 </div>
-
-
-                <form
-                  [formGroup]="quizForm"
-                  (ngSubmit)="sendQuizForm(category._id)"
+                <!-- Start Quiz Button -->
+                <button
+                    class="btn text-white p-2 btn-sm px-3 bg-gradient-primary"
+                    data-bs-toggle="modal"
+                    [attr.data-bs-target]="'#quizModal' + category._id"
+                    (click)="openQuizForm(category.name)"
                 >
                     Start Quiz Now
                 </button>
                 </div>
             </div>
-
             <!-- Modal -->
             <div
                 class="modal fade"
@@ -61,10 +60,10 @@
                         aria-label="Close"
                         (click)="cancelQuizForm()"
                     ></button>
-
+                    </div>
                     <form
                     [formGroup]="quizForm"
-                    (ngSubmit)="sendQuizForm(category.name)"
+                    (ngSubmit)="sendQuizForm(category._id)"
                     >
                     <div class="modal-body">
                         <div class="mb-3 text-start">
@@ -85,13 +84,14 @@
                         </div>
 
                         <div class="mb-3 text-start">
-                      <label class="form-label fw-semibold">Difficulty</label>
-                      <select class="form-select" formControlName="difficulty">
-                          <option value="easy">Easy</option>
-                          <option value="medium">Medium</option>
-                          <option value="hard">Hard</option>
-                      </select>
-                     </div>
+                        <label class="form-label fw-semibold">Difficulty</label>
+                        <select class="form-select" formControlName="difficulty">
+                            <option value="easy">Easy</option>
+                            <option value="medium">Medium</option>
+                            <option value="hard">Hard</option>
+                        </select>
+                        </div>
+                    </div>
 
                     <div class="modal-footer border-0">
                         <button
