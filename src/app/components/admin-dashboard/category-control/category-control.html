@@ -1,0 +1,103 @@
+<div class="container py-5">
+    <h4 class="mb-4 text-center">Manage Categories</h4>
+
+    <div class="text-end mb-3">
+        <button class="btn btn-primary btn-sm" (click)="openAddModal(addEditModal)">
+        + Add Category
+        </button>
+    </div>
+
+    @if (loading) {
+        <div class="text-center my-5">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        </div>
+    }
+    @else if (error) {
+        <div class="alert alert-danger text-center">{{ error }}</div>
+    }
+    @else {
+        <div class="table-responsive">
+        <table class="table table-striped align-middle">
+            <thead class="table-dark">
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Rating</th>
+                <th>Popularity</th>
+                <th class="text-end">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            @for (cat of categories; track cat._id; let i = $index) {
+                <tr>
+                <td>{{ i + 1 }}</td>
+                <td>{{ cat.name }}</td>
+                <td>{{ cat.description }}</td>
+                <td>{{ cat.rating }}</td>
+                <td>{{ cat.popularity }}</td>
+                <td class="text-end">
+                    <button
+                    class="btn btn-sm btn-outline-secondary me-2"
+                    (click)="openEditModal(addEditModal, cat)"
+                    >
+                    Edit
+                    </button>
+                    <button
+                    class="btn btn-sm btn-outline-danger"
+                    (click)="deleteCategory(cat._id)"
+                    >
+                    Delete
+                    </button>
+                </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+        </div>
+    }
+</div>
+
+<!-- Add/Edit Modal -->
+<ng-template #addEditModal let-modal>
+  <div class="modal-header bg-primary text-white">
+    <h5 class="modal-title">
+      {{ editingCategory ? 'Edit Category' : 'Add New Category' }}
+    </h5>
+    <button type="button" class="btn-close btn-close-white" (click)="modal.dismiss()"></button>
+  </div>
+
+  <form [formGroup]="categoryForm" (ngSubmit)="saveCategory(modal)">
+    <div class="modal-body">
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Name</label>
+        <input type="text" class="form-control" formControlName="name" />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Description</label>
+        <textarea class="form-control" rows="2" formControlName="description"></textarea>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label fw-semibold">Rating</label>
+          <input type="number" class="form-control" min="0" max="5" formControlName="rating" />
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label fw-semibold">Popularity</label>
+          <input type="number" class="form-control" min="0" formControlName="popularity" />
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer border-0">
+      <button type="button" class="btn btn-secondary" (click)="modal.close()">Cancel</button>
+      <button type="submit" class="btn btn-success" [disabled]="categoryForm.invalid">
+        {{ editingCategory ? 'Update' : 'Add' }}
+      </button>
+    </div>
+  </form>
+</ng-template>
