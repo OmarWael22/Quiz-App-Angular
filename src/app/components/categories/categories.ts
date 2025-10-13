@@ -61,12 +61,13 @@ export class Categories implements OnInit {
         },
       });
     } else {
+        console.log(this.quizForm);
       this.quizForm.markAllAsTouched();
     }
   }
 
   cancelQuizForm() {
     this.selectedCategory.set(null);
-    this.quizForm.reset({ nQuestion: '', difficulty: 'any' });
+    this.quizForm.reset({ nQuestion: '', difficulty: 'easy' });
   }
 }
