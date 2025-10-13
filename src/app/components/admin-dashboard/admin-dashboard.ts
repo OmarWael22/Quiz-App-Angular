@@ -5,7 +5,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 @Component({
     selector: 'app-admin-dashboard',
     templateUrl: './admin-dashboard.html',
-    imports: [CategoryControl, Categories, RouterOutlet, RouterLink ,RouterLinkActive],
+    imports: [ RouterOutlet, RouterLink ,RouterLinkActive],
     styleUrl: './admin-dashboard.css'
     })
     export class AdminDashboard  {

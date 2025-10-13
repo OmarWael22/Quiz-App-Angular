@@ -1,1 +1,138 @@
-<p>question-control works!</p>
+<div class="container py-5">
+  <h4 class="mb-4 text-center">Manage Questions</h4>
+
+  <div class="text-end mb-3">
+    <button class="btn text-white btn bg-gradient-primary" (click)="openAddModal(addEditModal)">
+      + Add Question
+    </button>
+  </div>
+
+  @if (loading) {
+    <div class="text-center my-5">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  }
+  @else if (error) {
+    <div class="alert alert-danger text-center">{{ error }}</div>
+  }
+  @else {
+    <div class="table-responsive">
+      <table class="table table-striped align-middle">
+        <thead class="table-dark">
+          <tr>
+            <th>#</th>
+            <th>Description</th>
+            <th>Choices</th>
+            <th>Correct</th>
+            <th>Difficulty</th>
+            <th>Category Name</th>
+            <th class="text-end">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (question of questions; track question._id; let i = $index) {
+            <tr>
+              <td>{{ i + 1 }}</td>
+              <td>{{ question.description }}</td>
+              <td>
+                <ul class="list-unstyled mb-0 small">
+                  @for (choice of question.choices; track choice) {
+                    <li>• {{ choice }}</li>
+                  }
+                </ul>
+              </td>
+              <td class="fw-semibold text-success">{{ question.correctChoice }}</td>
+              <td class="text-capitalize">{{ question.difficulty }}</td>
+              <td><code>{{ getCategoryName(question.categoryId) }}</code></td>
+              <td class="text-end">
+                <button
+                  class="btn btn-sm btn-outline-secondary me-2 mb-2"
+                  (click)="openEditModal(addEditModal, question)"
+                >
+                  Edit
+                </button>
+                <button
+                  class="btn btn-sm btn-outline-danger"
+                  (click)="deleteCategory(question._id)"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>
+
+<!-- Add/Edit Modal -->
+<ng-template #addEditModal let-modal>
+  <div class="modal-header text-white bg-gradient-primary">
+    <h5 class="modal-title">
+      {{ editingQuestion ? 'Edit Question' : 'Add New Question' }}
+    </h5>
+    <button type="button" class="btn-close btn-close-white" (click)="modal.dismiss()"></button>
+  </div>
+
+  <form [formGroup]="questionForm" (ngSubmit)="saveCategory(modal)">
+    <div class="modal-body">
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Question Description</label>
+        <input type="text" class="form-control" formControlName="description" />
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label fw-semibold">Choice 1</label>
+          <input type="text" class="form-control" formControlName="choice1" />
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label fw-semibold">Choice 2</label>
+          <input type="text" class="form-control" formControlName="choice2" />
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label fw-semibold">Choice 3</label>
+          <input type="text" class="form-control" formControlName="choice3" />
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label fw-semibold">Choice 4</label>
+          <input type="text" class="form-control" formControlName="choice4" />
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Correct Choice</label>
+        <input type="text" class="form-control" formControlName="correctChoice" />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Difficulty</label>
+        <select class="form-select" formControlName="difficulty">
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+      </div>
+
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Category</label>
+            <select class="form-select" formControlName="categoryId">
+                <option value="">Select a Category</option>
+                @for (cat of categories; track cat._id) {
+                <option [value]="cat._id">{{ cat.name }}</option>
+                }
+            </select>
+        </div>
+    </div>
+
+    <div class="modal-footer border-0">
+      <button type="button" class="btn btn-secondary" (click)="modal.close()">Cancel</button>
+      <button type="submit" class="btn bg-gradient-primary text-white" [disabled]="questionForm.invalid">
+        {{ editingQuestion ? 'Update' : 'Add' }}
+      </button>
+    </div>
+  </form>
+</ng-template>

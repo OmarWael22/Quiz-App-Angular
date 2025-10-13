@@ -2,7 +2,7 @@
     <h4 class="mb-4 text-center">Manage Categories</h4>
 
     <div class="text-end mb-3">
-        <button class="btn btn-primary btn-sm" (click)="openAddModal(addEditModal)">
+        <button class="btn text-white btn bg-gradient-primary" (click)="openAddModal(addEditModal)">
         + Add Category
         </button>
     </div>
@@ -20,7 +20,7 @@
     @else {
         <div class="table-responsive">
         <table class="table table-striped align-middle">
-            <thead class="table-dark">
+            <thead class="table-dark ">
             <tr>
                 <th>#</th>
                 <th>Name</th>
@@ -62,8 +62,8 @@
 
 <!-- Add/Edit Modal -->
 <ng-template #addEditModal let-modal>
-  <div class="modal-header bg-primary text-white">
-    <h5 class="modal-title">
+  <div class="modal-header bg-gradient-primary text-white">
+    <h5 class="modal-title ">
       {{ editingCategory ? 'Edit Category' : 'Add New Category' }}
     </h5>
     <button type="button" class="btn-close btn-close-white" (click)="modal.dismiss()"></button>
@@ -95,7 +95,7 @@
 
     <div class="modal-footer border-0">
       <button type="button" class="btn btn-secondary" (click)="modal.close()">Cancel</button>
-      <button type="submit" class="btn btn-success" [disabled]="categoryForm.invalid">
+      <button type="submit" class="btn bg-gradient-primary text-white" [disabled]="categoryForm.invalid">
         {{ editingCategory ? 'Update' : 'Add' }}
       </button>
     </div>

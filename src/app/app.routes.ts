@@ -28,6 +28,9 @@ export const routes: Routes = [
         title: 'DashBoard',
         children: [
             {
+                path:'', redirectTo : 'categories-control' , pathMatch : 'full'
+            },
+            {
                 path: 'categories-control',
                 loadComponent: () => import('./components/admin-dashboard/category-control/category-control').then(m => m.CategoryControl),
 
