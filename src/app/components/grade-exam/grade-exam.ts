@@ -13,6 +13,7 @@ export class GradeExam implements OnInit{
     questionsBody: any[] = [];
     apiUrl: string = '';
     gradeData: any;
+    isLoading: boolean = true;
 
     constructor(private gradeExamService: GradeExamService, private router: Router) {
         const navigation = this.router.getCurrentNavigation();
@@ -29,9 +30,11 @@ export class GradeExam implements OnInit{
             next:(res) => {
                 console.log('res this.gradeExamService', res);
                 this.gradeData = res.data;
+                this.isLoading = false;
             },
             error: (err) => {
                 console.error('grade exam error', err);
+                this.isLoading = false;
             }
         })
     }

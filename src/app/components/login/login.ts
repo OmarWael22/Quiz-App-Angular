@@ -13,6 +13,7 @@ export class Login {
     email: string = '';
     password: string = '';
     errMsg: string | null = null;
+    successMsg: string | null = null;
 
     constructor(private loginService: LoginService, private router: Router) {}
 
@@ -20,14 +21,17 @@ export class Login {
         this.loginService.login(this.email, this.password).subscribe({
             next: (res) => {
                 console.log('Logged in successfully!');
-                this.router.navigate(['/']);
+                this.successMsg = 'Logged in successfully!';
+                setTimeout(() => {
+                    this.router.navigate(['/']);
+                }, 2000)
             },
             error: (err) => {
-                this.errMsg = err.error?.message || 'Email or password are incorrect!';  
+                this.errMsg = err.error?.message || 'Email or password are incorrect!';
             }
         })
-    
-    
+
+
     }
 
 }
