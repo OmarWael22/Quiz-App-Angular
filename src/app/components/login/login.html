@@ -25,7 +25,17 @@
             </p>
 
             @if(errMsg) {
-            <p class="error">{{ errMsg }}</p>
+                <p class="error">{{ errMsg }}</p>
+            }
+            @else if (successMsg) {
+                <div class="success-message">
+                    <div class="checkmark">
+                        <div class="checkmark-circle"></div>
+                        <div class="checkmark-stem"></div>
+                        <div class="checkmark-kick"></div>
+                    </div>
+                    <p>{{ successMsg }}</p>
+                </div>
             }
 
         </form>

@@ -77,8 +77,8 @@ export class Exam implements OnInit{
     }
 
     selectAnswer(questionIdx: any, choosenAnswer: any) {
-        // console.log('select', choosenAnswer, questionIdx);
+        console.log('select', choosenAnswer, questionIdx);
         this.userAnswers[questionIdx] = choosenAnswer;
-        // console.log('this.userAnswers', this.userAnswers);
+        console.log('this.userAnswers', this.userAnswers);
     }
 }

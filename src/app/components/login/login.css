@@ -119,3 +119,87 @@ button:disabled {
     color: red;
     font-weight: bold;
 }
+
+.success-message {
+    margin-top: 18px;
+    padding: 12px;
+    border-radius: 8px;
+    background: #e8f9ee;
+    border: 1px solid #b9f0c6;
+    color: #198754;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+.checkmark {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    display: inline-block;
+}
+
+.checkmark-circle {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 3px solid #198754;
+    animation: pop 0.4s ease forwards;
+}
+
+.checkmark-stem {
+    position: absolute;
+    width: 3px;
+    height: 14px;
+    background-color: #198754;
+    left: 16px;
+    top: 10px;
+    transform: rotate(45deg);
+    animation: draw 0.4s ease 0.2s forwards;
+}
+
+.checkmark-kick {
+    position: absolute;
+    width: 3px;
+    height: 8px;
+    background-color: #198754;
+    left: 10px;
+    top: 20px;
+    transform: rotate(-45deg);
+    animation: draw 0.4s ease 0.2s forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes draw {
+    from {
+        opacity: 0;
+        height: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes pop {
+    from {
+        transform: scale(0.8);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
