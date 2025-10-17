@@ -24,7 +24,7 @@ export class Login {
                 console.log('Logged in successfully!', res);
                 this.successMsg = 'Logged in successfully! 🎉';
                 const user: any = res.data.user;
-                this.authService.fillData(user.name, user.email, user.role, res.data.token);
+                this.authService.fillData(user._id, user.name, user.email, user.role, res.data.token);
                 setTimeout(() => {
                     this.router.navigate(['/']);
                 }, 2000);
