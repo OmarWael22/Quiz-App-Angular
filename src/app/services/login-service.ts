@@ -7,7 +7,6 @@ import { Observable } from "rxjs";
 })
 export class LoginService {
     private loginUrl = 'https://quiz-app-api-lac.vercel.app/api/auth/login';
-    private logoutUrl = 'https://quiz-app-api-lac.vercel.app/api/auth/logout';
 
     constructor(private http: HttpClient) { }
 
@@ -18,12 +17,6 @@ export class LoginService {
         };
 
         return this.http.post<any>(this.loginUrl, reqBody, {
-            withCredentials: true
-        });
-    }
-
-    logout(): Observable<any> {
-        return this.http.post<any>(this.logoutUrl, {}, {
             withCredentials: true
         });
     }

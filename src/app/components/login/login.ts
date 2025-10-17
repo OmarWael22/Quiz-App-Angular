@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { LoginService } from '../../services/login-service';
 import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../services/auth-service';
 
 @Component({
   selector: 'app-login',
@@ -15,16 +16,18 @@ export class Login {
     errMsg: string | null = null;
     successMsg: string | null = null;
 
-    constructor(private loginService: LoginService, private router: Router) {}
+    constructor(private loginService: LoginService, private authService: AuthService, private router: Router) {}
 
     onSubmit(e: Event){
         this.loginService.login(this.email, this.password).subscribe({
             next: (res) => {
-                console.log('Logged in successfully!');
-                this.successMsg = 'Logged in successfully!';
+                console.log('Logged in successfully!', res);
+                this.successMsg = 'Logged in successfully! 🎉';
+                const user: any = res.data.user;
+                this.authService.fillData(user.name, user.email, user.role, res.data.token);
                 setTimeout(() => {
                     this.router.navigate(['/']);
-                }, 2000)
+                }, 2000);
             },
             error: (err) => {
                 this.errMsg = err.error?.message || 'Email or password are incorrect!';
