@@ -3,7 +3,7 @@
   background: var(--landing-gradient);
   display: flex;
   align-items: center;
-  padding: 100px 0;
+  /* padding: 100px 0; */
   overflow: hidden;
 }
 
@@ -15,6 +15,23 @@
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-12px); }
+}
+.animated-arrow {
+  /* display: inline-block; */
+  transition: transform 0.3s ease;
+  animation: moveRight 1s ease-in-out infinite;
+}
+
+@keyframes moveRight {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(6px);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 
 .gradient-text {
