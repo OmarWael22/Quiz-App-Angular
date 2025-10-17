@@ -8,8 +8,8 @@ import { Observable } from "rxjs";
 export class GradeExamService {
     constructor(private http: HttpClient) { }
 
-    gradeExam(apiUrl: string, questionsBody: any[]): Observable<any> {
-        console.log('trying to post');
-        return this.http.post<any>(apiUrl, questionsBody);
+    gradeExam(apiUrl: string, questions: any[]): Observable<any> {
+        console.log(apiUrl, questions);
+        return this.http.post<any>(apiUrl, {questions});
     }
 }

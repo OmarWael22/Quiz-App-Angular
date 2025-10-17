@@ -1,1 +1,33 @@
-<p>grade-exam works!</p>
+<div class="grade-wrapper">
+    @if (isLoading) {
+        <div class="text-center my-5">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        </div>
+    }
+    @else {
+        <div class="grade-card">
+            <h2>🎉 Exam Result</h2>
+
+            <div class="grade-summary">
+                <h3>Your Grade: <span class="grade">{{ gradeData?.Grade }}/{{ gradeData?.exam?.numberOfQuestions
+                        }}</span></h3>
+                <p class="status"
+                    [ngClass]="{ 'passed': gradeData?.Grade > (gradeData?.exam?.numberOfQuestions / 2), 'failed': gradeData?.Grade <= (gradeData?.exam?.numberOfQuestions / 2) }">
+                    {{ gradeData?.Grade > (gradeData?.exam?.numberOfQuestions / 2) ? '✅ Passed' : '❌ Failed' }}
+                </p>
+            </div>
+
+            <div class="exam-details">
+                <p><strong>Difficulty:</strong> {{ gradeData?.exam?.difficulty }}</p>
+                <p><strong>Total Questions:</strong> {{ gradeData?.exam?.numberOfQuestions }}</p>
+                <p><strong>Duration:</strong> {{ (gradeData?.exam?.time / 60000) }} mins</p>
+                <p><strong>Date:</strong> {{ gradeData?.exam?.createdAt | date:'medium' }}</p>
+            </div>
+
+            <button class="retry-btn" routerLink="/categories">Take Another Exam!</button>
+        </div>
+    }
+
+</div>

@@ -14,6 +14,9 @@ export class Signup {
 	email: string = '';
 	password: string = '';
 
+    errMsg: string | null = null;
+    successMsg: string | null = null;
+    
 	signupForm: FormGroup;
 
 	constructor(fb: FormBuilder, private signupService: SignupService, private router: Router) {
@@ -27,15 +30,23 @@ export class Signup {
 	onSignup() {
 		const {name, email, password} = this.signupForm.value;
 
-		console.log('trying to signup', 'name=', name, 'email = ', email, 'pass = ', password);
 		if(this.signupForm.invalid) {
-			console.log('Signup form is invalid');
+            this.errMsg = 'Invalid data';
+            this.successMsg = null;
 			return ;
 		}
 		this.signupService.signup(name, email, password).subscribe({
+            error: (err) => {
+                console.log('err', err, err.error.msg);
+                this.errMsg = err.error.msg;
+            },
 			next: (res) => {
 				console.log('Signedup successfully', res.msg);
-				this.router.navigate(['/login'])
+                this.successMsg = 'Signed up successfully! 🎉';
+                this.errMsg = null;
+                setTimeout(() => {
+                    this.router.navigate(['/login'])
+                }, 2000);
 			}
 		})
 	}

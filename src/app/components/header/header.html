@@ -1,49 +1,52 @@
 <nav class="navbar navbar-expand-lg sticky-top shadow-sm bg-white sticky-top shadow-sm bg-white py-3">
-  <div class="container">
-    <!-- Brand -->
-    <a class="navbar-brand fw-bold d-flex align-items-center gap-2" routerLink="/home">
-      <img src="images/logo.webp" alt="logo" width="35" class="rounded-circle object-fit-cover">
-      <span>QuizApp</span>
-    </a>
+    <div class="container">
+        <!-- Brand -->
+        <a class="navbar-brand fw-bold d-flex align-items-center gap-2" routerLink="/home">
+            <img src="images/logo.webp" alt="logo" width="35" class="rounded-circle object-fit-cover">
+            <span>QuizApp</span>
+        </a>
 
-    <!-- Toggle button for mobile -->
-    <button
-      class="navbar-toggler border-0"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#mainNavbar"
-      aria-controls="mainNavbar"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
+        <!-- Toggle button for mobile -->
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+            aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse justify-content-end" id="mainNavbar">
-      <ul class="navbar-nav align-items-center">
-        <li class="nav-item me-2">
-          <a class="nav-link" routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
-        </li>
-        <li class="nav-item me-2" (click)="scrollToSection($event, 'features')">
-          <a class="nav-link" routerLink="/home" fragment="features">Features</a>
-        </li>
-        <li class="nav-item me-2">
-          <a class="nav-link" routerLink="/categories" routerLinkActive="active">Categories</a>
-        </li>
-        <li class="nav-item me-2">
-          <a class="nav-link" routerLink="/exam" routerLinkActive="active">Start Quiz</a>
-        </li>
-        <li class="nav-item me-2">
-          <a class="nav-link" routerLink="/profile" routerLinkActive="active">Profile</a>
-        </li>
-        <li class="nav-item me-2">
-          <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
-        </li>
-        <li class="nav-item">
-          <a class="btn bg-gradient-primary text-white px-3 py-1 rounded-3 shadow-sm login-btn" routerLink="/login">Login</a>
-        </li>
-      </ul>
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse justify-content-end" id="mainNavbar">
+            <ul class="navbar-nav align-items-center">
+                <li class="nav-item me-2">
+                    <a class="nav-link" routerLink="/home" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }">Home</a>
+                </li>
+                <li class="nav-item me-2" (click)="scrollToSection($event, 'features')">
+                    <a class="nav-link" routerLink="/home" fragment="features">Features</a>
+                </li>
+                <li class="nav-item me-2">
+                    <a class="nav-link" routerLink="/categories" routerLinkActive="active">Categories</a>
+                </li>
+                <!-- TODO: Authorize only admin -->
+                <li class="nav-item me-2">
+                    <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+                </li>
+                @if(!authService.isLoggedIn()) {
+                <li class="nav-item">
+                    <a class="btn bg-gradient-primary text-white px-3 py-1 rounded-3 shadow-sm login-btn"
+                        routerLink="/login">Login</a>
+                </li>
+                }
+                @else {
+                <li class="nav-item d-flex align-items-center gap-3">
+                    <span class="welcome-text">👋 Welcome, 
+                        <a routerLink="/profile">
+                            <strong>{{ authService.userName }}</strong>
+                        </a> 
+                    </span>
+                    <a class="btn bg-gradient-primary text-white px-3 py-1 rounded-3 shadow-sm logout-btn" (click)="logout()">Logout </a>
+                </li>
+                }
+
+            </ul>
+        </div>
     </div>
-  </div>
 </nav>
