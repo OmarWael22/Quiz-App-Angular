@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../../services/auth-service';
 
 @Component({
     selector: 'app-exam',
@@ -19,7 +20,7 @@ export class Exam implements OnInit{
 
     private route = inject(ActivatedRoute);
 
-    constructor(private http: HttpClient, private router: Router) {}
+    constructor(private http: HttpClient, private router: Router, private authService: AuthService) {}
 
     ngOnInit(): void {
         // get query params values
@@ -30,11 +31,13 @@ export class Exam implements OnInit{
         const apiUrl: string = 'https://quiz-app-api-lac.vercel.app/api/exams';
 
         console.log('snapshot', snapshot);
+        const userId: string = this.authService.userID;
 
         const body = {
             categoryId: this.category,
             difficulty: this.difficulty,
-            numberOfQuestions: this.nQuestion
+            numberOfQuestions: this.nQuestion,
+            userId
         }
 
         this.http.post(apiUrl, body, {

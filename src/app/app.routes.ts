@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { Landing } from './components/landing/landing';
+import { authGuard } from './guards/auth-guard';
 
 export const routes: Routes = [
 	//In general, eager loading is recommended for primary landing page(s) while other pages would be lazy-loaded.
@@ -14,18 +15,21 @@ export const routes: Routes = [
 
 		path: 'grade-exam',
 		loadComponent: () => import('./components/grade-exam/grade-exam').then(m => m.GradeExam),
-		title: 'Grade Exam'
+		title: 'Grade Exam',
+        canActivate: [authGuard]
 	},
 
 	{
 		path: 'profile',
 		loadComponent: () => import('./components/profile/profile').then(m => m.Profile),
-		title: 'Profile'
+		title: 'Profile',
+        canActivate: [authGuard]
     },
     {
         path: 'dashboard',
         loadComponent: () => import('./components/admin-dashboard/admin-dashboard').then(m => m.AdminDashboard),
         title: 'DashBoard',
+        canActivate: [authGuard],
         children: [
             {
                 path:'', redirectTo : 'categories-control' , pathMatch : 'full'
@@ -56,7 +60,8 @@ export const routes: Routes = [
 	{
 		path: 'exam',
 		loadComponent: () => import('./components/exam/exam').then(m => m.Exam),
-		title: 'Exam'
+		title: 'Exam',
+        canActivate: [authGuard]
 	},
 	{
 		path: '**',
