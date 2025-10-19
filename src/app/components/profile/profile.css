@@ -1,29 +1,110 @@
-.profile-sidebar {
-  background: linear-gradient(135deg, #667eea, #764ba2);
-    min-height: 90vh
-
+.profile-page {
+  background-color: #f8f9fc;
+  min-height: 100vh;
 }
 
-.card {
-  border-radius: 16px;
+.bg-sidebar {
+  background: linear-gradient(135deg, #4e73df, #224abe);
+  border-radius: 0 20px 20px 0;
 }
 
-img.rounded-circle {
-  object-fit: cover;
+/* ====== CARD DESIGN ====== */
+.exam-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  background-color: #fff;
 }
 
-.badge {
-  font-size: 0.9rem;
+.exam-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
-.card.shadow-sm:hover {
-  transform: translateY(-2px);
-  transition: 0.2s ease-in-out;
+/* ====== CARD HEADER COLORS ====== */
+.bg-math {
+  background: linear-gradient(135deg, #36b9cc, #0dcaf0);
 }
-.hover-scale {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+.bg-science {
+  background: linear-gradient(135deg, #1cc88a, #0bca5c);
 }
-.hover-scale:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+.bg-history {
+  background: linear-gradient(135deg, #f6c23e, #f4b30b);
 }
+
+.bg-default {
+  background: linear-gradient(135deg, #858796, #6c757d);
+}
+
+/* Rounded header corners fix */
+.card-header {
+  border-top-left-radius: 1rem !important;
+  border-top-right-radius: 1rem !important;
+  padding: 0.75rem 1rem;
+}
+
+/* Text adjustments */
+.card-body h5 {
+  color: #343a40;
+}
+
+ul li i {
+  margin-right: 6px;
+}
+
+/* Sidebar Avatar */
+.profile-sidebar img {
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+}
+
+.n-questions, .time, .grade, .result {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-bottom: 6px;
+  transition: all 0.3s ease;
+}
+
+/* Icons */
+.n-questions i,
+.time i,
+.grade i {
+  font-size: 1.1rem;
+}
+
+/* Distinct but matching colors */
+.n-questions {
+  color: #0078D7; /* Soft blue */
+}
+
+.n-questions i {
+  color: #0078D7;
+}
+
+.time {
+  color: #FF9800; /* Warm amber */
+}
+
+.time i {
+  color: #FF9800;
+}
+
+.grade {
+  color: #4CAF50; /* Calming green */
+}
+
+.grade i {
+  color: #4CAF50;
+}
+
+/* Hover effect for better interactivity */
+.n-questions:hover,
+.time:hover,
+.grade:hover {
+  transform: translateX(3px);
+  opacity: 0.9;
+}
+
+

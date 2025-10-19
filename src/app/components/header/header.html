@@ -3,7 +3,7 @@
         <!-- Brand -->
         <a class="navbar-brand fw-bold d-flex align-items-center gap-2" routerLink="/home">
             <img src="images/logo.webp" alt="logo" width="35" class="rounded-circle object-fit-cover">
-            <span>QuizApp</span>
+            <span>QuizMaster</span>
         </a>
 
         <!-- Toggle button for mobile -->
@@ -37,10 +37,10 @@
                 }
                 @else {
                 <li class="nav-item d-flex align-items-center gap-3">
-                    <span class="welcome-text">👋 Welcome, 
+                    <span class="welcome-text">👋 Welcome,
                         <a routerLink="/profile">
                             <strong>{{ authService.userName }}</strong>
-                        </a> 
+                        </a>
                     </span>
                     <a class="btn bg-gradient-primary text-white px-3 py-1 rounded-3 shadow-sm logout-btn" (click)="logout()">Logout </a>
                 </li>

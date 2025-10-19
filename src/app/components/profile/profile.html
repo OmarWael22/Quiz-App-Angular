@@ -1,66 +1,106 @@
 @if (userData) {
-  <div class="row g-0">
+<div class="row g-0">
     <!-- Sidebar -->
     <div class="col-12 col-md-3  bg-gradient-primary text-white text-center p-4 profile-sidebar">
-      <img
-        src="images/default-avatar.svg"
-        alt="User Avatar"
-        class="rounded-circle border border-3 border-light mb-3"
-        width="120"
-        height="120"
-      />
-      <h4 class="fw-bold mb-1">{{ userData.name }}</h4>
-      <p class="text-light mb-2">{{ userData.email }}</p>
-      <span class="badge bg-light text-dark px-3 py-2">
-        {{ userData.role | titlecase }}
-      </span>
+        <img src="images/default-avatar.svg" alt="User Avatar" class="rounded-circle border border-3 border-light mb-3"
+            width="120" height="120" />
+        <h4 class="fw-bold mb-1">{{ userData.name }}</h4>
+        <p class="text-light mb-2">{{ userData.email }}</p>
+        <span class="badge bg-light text-dark px-3 py-2">
+            {{ userData.role | titlecase }}
+        </span>
 
-      <hr class="border-light my-4" />
+        <hr class="border-light my-4" />
 
-      <p class="mb-0 small opacity-75">
-        <i class="bi bi-calendar3"></i>
-        Joined: {{ userData.createdAt | date: 'mediumDate' }}
-      </p>
+        <p class="mb-0 small opacity-75">
+            <i class="bi bi-calendar3"></i>
+            Joined: {{ userData.createdAt | date: 'mediumDate' }}
+        </p>
     </div>
 
     <!-- Main Content -->
     <div class="col-12 col-md-9 p-5">
-      <h3 class="fw-semibold mb-3">
-        Welcome, {{ userData.name.split(' ')[0] }} 👋
-      </h3>
-      <p class="text-muted mb-4">
-        Manage your profile, view your progress, and customize your experience.
-      </p>
+        <h3 class="fw-semibold mb-3">
+            Welcome, {{ userData.name.split(' ')[0] }} 👋
+        </h3>
+        <p class="text-muted mb-4">
+            Manage your profile, view your progress, and customize your experience.
+        </p>
 
-      <div class="row text-center mt-4 gy-3">
-        <div class="col-6 col-lg-4">
-          <div class="card border-0 shadow-sm p-3 hover-scale">
-            <i class="bi bi-bar-chart-fill fs-3 text-primary mb-2"></i>
-            <h6 class="mb-0">My Quizzes</h6>
-          </div>
-        </div>
+        <div class="row text-center mt-4 gy-3">
+            <!-- Exams Section -->
+            <div class="col-12">
+                <h4 class="fw-bold mb-4 text-start">Your Exams</h4>
 
-        <div class="col-6 col-lg-4">
-          <div class="card border-0 shadow-sm p-3 hover-scale">
-            <i class="bi bi-gear-fill fs-3 text-success mb-2"></i>
-            <h6 class="mb-0">Settings</h6>
-          </div>
-        </div>
+                @if (userExams && userExams.length > 0) {
+                <div class="row g-4">
+                    @for (exam of userExams; track exam._id) {
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm border-0 rounded-4 exam-card ">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <span class="badge bg-gradient-primary rounded-3 text-uppercase">
+                                        {{ exam.categoryId?.name || 'Uncategorized' }}
+                                    </span>
+                                    <small class="text-muted">
+                                        {{ exam.createdAt | date: 'mediumDate' }}
+                                    </small>
+                                </div>
 
-        <div class="col-6 col-lg-4">
-          <div class="card border-0 shadow-sm p-3 hover-scale">
-            <i class="bi bi-trophy-fill fs-3 text-warning mb-2"></i>
-            <h6 class="mb-0">Achievements</h6>
-          </div>
+                                <h5 class="fw-semibold mb-2 text-capitalize">
+                                    {{ exam.difficulty }} Level
+                                </h5>
+
+                                <ul class="exam-info list-unstyled mb-3">
+                                    <li class="info-item n-questions">
+                                        <i class="bi bi-question-circle"></i>
+                                        <span>{{ exam.numberOfQuestions }} Questions</span>
+                                    </li>
+
+                                    <li class="info-item time">
+                                        <i class="bi bi-clock"></i>
+                                        <span>{{ exam.time / 60000 }} min</span>
+                                    </li>
+
+                                    <li class="info-item grade">
+                                        <i class="bi bi-award"></i>
+                                        <span>Grade:</span>
+                                        <span [ngClass]="exam.isGraded ? 'text-success fw-bold' : 'text-secondary'">
+                                            {{ exam.isGraded ? exam.grade : 'Not Graded' }}
+                                        </span>
+                                    </li>
+
+                                    <li class="info-item result"
+                                        [ngClass]="exam.grade > (exam.numberOfQuestions / 2) ? 'text-success' : 'text-danger'">
+                                        <i class="bi"
+                                            [ngClass]="exam.grade > (exam.numberOfQuestions / 2) ? 'bi-check-circle' : 'bi-x-circle'"></i>
+                                        <span>{{ exam.grade > (exam.numberOfQuestions / 2) ? 'Success' : 'Fail'
+                                            }}</span>
+                                    </li>
+                                </ul>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>
+                } @else {
+                <div class="alert alert-info text-center mt-4 rounded-3 shadow-sm">
+                    You haven't taken any exams yet.
+                </div>
+                }
+            </div>
+
         </div>
-      </div>
     </div>
-  </div>
+</div>
 }
 
 @else {
-  <div class="d-flex flex-column align-items-center justify-content-center vh-100 text-secondary">
+<div class="d-flex flex-column align-items-center justify-content-center vh-100 text-secondary">
     <div class="spinner-border text-primary mb-3" role="status"></div>
     <p>Loading profile...</p>
-  </div>
+</div>
 }

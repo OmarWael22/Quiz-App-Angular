@@ -13,4 +13,9 @@ export class UserService {
     getUserById(id: string): Observable<any> {
         return this.http.get(`${this.baseUrl}/${id}`);
     }
+
+    getUserExams(id: string): Observable<any> {
+        return this.http.get(`${this.baseUrl}/exams/${id}`);
+    }
+
 }

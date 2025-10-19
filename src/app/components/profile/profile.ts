@@ -11,22 +11,32 @@ import { CommonModule, DatePipe, TitleCasePipe } from '@angular/common';
 })
 export class Profile implements OnInit {
     userData: any = null;
-
+    userExams: any = null;
     constructor(private auth: AuthService, private userService: UserService) {}
 
     ngOnInit(): void {
         const userId = this.auth.userID;
 
         if (userId) {
-        this.userService.getUserById(userId).subscribe({
-            next: ({ data }) => {
-            console.log('User data fetched:', data);
-            this.userData = data;
-            },
-            error: (err) => {
-            console.error('Error fetching user data:', err);
-            },
-        });
+            this.userService.getUserById(userId).subscribe({
+                next: ({ data }) => {
+                    console.log('User data fetched:', data);
+                    this.userData = data;
+                },
+                error: (err) => {
+                    console.error('Error fetching user data:', err);
+                },
+            });
+
+            this.userService.getUserExams(userId).subscribe({
+                next: ({ data }) => {
+                    console.log('data', data);
+                    this.userExams = data;
+                },
+                error: (err) => {
+                    console.error('Error fetching user data:', err);
+                }
+            })
         }
     }
 }
