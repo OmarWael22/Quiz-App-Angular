@@ -122,3 +122,32 @@
         text-align: center;
     }
 }
+
+/* User dropdown styling */
+.nav-item.dropdown .dropdown-toggle {
+  font-weight: 500;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.nav-item.dropdown .dropdown-toggle:hover {
+  color: var(--primary-color);
+}
+
+.dropdown-menu {
+  border-radius: 10px;
+  border: none;
+  min-width: 180px;
+  padding: 0.5rem 0;
+}
+
+.dropdown-item {
+  font-weight: 500;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #f1f3f5;
+}
+
+

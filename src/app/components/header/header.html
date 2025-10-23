@@ -36,14 +36,40 @@
                 </li>
                 }
                 @else {
-                <li class="nav-item d-flex align-items-center gap-3">
-                    <span class="welcome-text">👋 Welcome,
-                        <a routerLink="/profile">
-                            <strong>{{ authService.userName }}</strong>
-                        </a>
-                    </span>
-                    <a class="btn bg-gradient-primary text-white px-3 py-1 rounded-3 shadow-sm logout-btn" (click)="logout()">Logout </a>
-                </li>
+                <li class="nav-item dropdown">
+  <button
+    class="btn user-dropdown-btn d-flex align-items-center gap-2 px-3 py-1 rounded-pill shadow-sm"
+    id="userDropdown"
+    data-bs-toggle="dropdown"
+    aria-expanded="false"
+  >
+    <img
+      src="images/default-avatar.svg"
+      alt="User Avatar"
+      width="30"
+      height="30"
+      class="rounded-circle border border-1 border-light"
+    />
+    <span class="fw-semibold text-dark">{{ authService.userName }}</span>
+    <i class="bi bi-caret-down-fill small text-muted"></i>
+  </button>
+
+  <ul class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="userDropdown">
+    <li>
+      <a class="dropdown-item d-flex align-items-center gap-2" routerLink="/profile">
+        <i class="bi bi-person-circle"></i> Profile
+      </a>
+    </li>
+    <li><hr class="dropdown-divider"></li>
+    <li>
+      <button class="dropdown-item text-danger d-flex align-items-center gap-2" (click)="logout()">
+        <i class="bi bi-box-arrow-right"></i> Logout
+      </button>
+    </li>
+  </ul>
+</li>
+
+
                 }
 
             </ul>

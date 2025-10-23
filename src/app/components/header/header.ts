@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../services/auth-service';
 import { LogoutService } from '../../services/logout-service';
 
@@ -10,8 +10,8 @@ import { LogoutService } from '../../services/logout-service';
     styleUrl: './header.css'
 })
 export class Header{
-    constructor(protected authService: AuthService, private logoutService: LogoutService) { }
-    
+    constructor(protected authService: AuthService, private logoutService: LogoutService, private router: Router) { }
+
     scrollToSection(event: Event, sectionId: string) {
         event.preventDefault();
         const element = document.getElementById(sectionId);
@@ -27,6 +27,7 @@ export class Header{
             }
         });
 
+        this.router.navigate(['/'])
     }
 
 }

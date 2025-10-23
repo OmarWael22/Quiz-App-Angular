@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { SignupService } from '../../services/signup-service';
+import { AuthService } from '../../services/auth-service';
 
 @Component({
 	selector: 'app-signup',
@@ -16,10 +17,10 @@ export class Signup {
 
     errMsg: string | null = null;
     successMsg: string | null = null;
-    
+
 	signupForm: FormGroup;
 
-	constructor(fb: FormBuilder, private signupService: SignupService, private router: Router) {
+	constructor(fb: FormBuilder, private signupService: SignupService, private router: Router, private authService: AuthService) {
 		this.signupForm = fb.group({
 			name: ['', [Validators.required, Validators.minLength(3)]],
 			email: ['', [Validators.required, Validators.email]],
@@ -37,7 +38,7 @@ export class Signup {
 		}
 		this.signupService.signup(name, email, password).subscribe({
             error: (err) => {
-                console.log('err', err, err.error.msg);
+                console.log('err', err.error.msg);
                 this.errMsg = err.error.msg;
             },
 			next: (res) => {
@@ -50,4 +51,9 @@ export class Signup {
 			}
 		})
 	}
+
+    onGoogleAuth() {
+        console.log('meee');
+        window.location.href = 'http://localhost:5050/api/auth/google';
+    }
 }

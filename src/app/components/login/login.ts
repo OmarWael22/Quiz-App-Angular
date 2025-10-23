@@ -18,7 +18,7 @@ export class Login {
 
     constructor(private loginService: LoginService, private authService: AuthService, private router: Router) {}
 
-    onSubmit(e: Event){
+    onSubmit(e: Event) {
         this.loginService.login(this.email, this.password).subscribe({
             next: (res) => {
                 console.log('Logged in successfully!', res);
@@ -33,8 +33,10 @@ export class Login {
                 this.errMsg = err.error?.message || 'Email or password are incorrect!';
             }
         })
+    }
 
-
+    onGoogleAuth() {
+        window.location.href = 'https://quiz-app-api-lac.vercel.app/api/auth/google';
     }
 
 }
