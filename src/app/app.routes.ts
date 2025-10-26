@@ -6,8 +6,8 @@ import { adminGuard } from './guards/admin-guard-guard';
 
 export const routes: Routes = [
 	//In general, eager loading is recommended for primary landing page(s) while other pages would be lazy-loaded.
-	{ path: 'home', component: Landing, title: 'home' },
 	{ path: '', redirectTo: 'home', pathMatch: 'full' },
+	{ path: 'home', component: Landing, title: 'home' },
 	{
 		path: 'categories',
 		loadComponent: () => import('./components/categories/categories').then(m => m.Categories),
