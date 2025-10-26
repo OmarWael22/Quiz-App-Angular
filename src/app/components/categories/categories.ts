@@ -53,7 +53,6 @@ export class Categories implements OnInit {
 
   sendQuizForm(categoryId: string) {
     if (this.quizForm.valid) {
-      console.log('Quiz form submitted:', this.quizForm.value);
       this.router.navigate(['/exam'], {
         queryParams: {
           category: categoryId,
@@ -61,7 +60,6 @@ export class Categories implements OnInit {
         },
       });
     } else {
-        console.log(this.quizForm);
       this.quizForm.markAllAsTouched();
     }
   }

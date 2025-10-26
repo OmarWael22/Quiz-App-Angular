@@ -1,46 +1,36 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
+import { __classPrivateFieldGet } from 'tslib';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
     constructor(private http : HttpClient) {
-
+        this.setIsLoggedIn();
     }
-    isLoggedIn = signal(false); // to make CD in header
+    private isLoggedIn = signal(false); // to make CD in header
+    user: any = null;
 
-    userID: string = '';
-    userName: string = '';
-    userEmail: string = '';
-    userRole: string = '';
-    userToken: string = '';
+    getIsLoggedIn() {
+        return this.isLoggedIn();
+    }
 
     private googleAuthUrl = 'http://localhost:5050/api/auth/google';
 
-
-    fillData(id: string, name: string, email: string, role: string, token: string) {
-        console.log('Filling the data', id, name, email, role, token);
-        this.isLoggedIn.set(true);
-        this.userID = id;
-        this.userName = name;
-        this.userEmail = email;
-        this.userRole = role;
-        this.userToken = token;
-    }
-
-    clearData() {
-        console.log('Clearing the data');
-        this.isLoggedIn.set(false);
-        this.userID = '';
-        this.userName = '';
-        this.userEmail = '';
-        this.userRole = '';
-        this.userToken = '';
+    setIsLoggedIn() {
+        if(localStorage.getItem("token") != null) {
+            this.isLoggedIn.set(true);
+            const storedUser = localStorage.getItem("user");
+            if(storedUser) {
+                this.user = JSON.parse(storedUser);
+            }
+        }
+        else 
+            this.isLoggedIn.set(false);
     }
 
     authWithGoogle() {
-        console.log('auht with google in auth service');
         return this.http.get<any>(this.googleAuthUrl, {
             withCredentials: true
         });

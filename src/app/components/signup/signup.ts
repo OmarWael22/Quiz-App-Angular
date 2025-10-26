@@ -38,11 +38,9 @@ export class Signup {
 		}
 		this.signupService.signup(name, email, password).subscribe({
             error: (err) => {
-                console.log('err', err.error.msg);
                 this.errMsg = err.error.msg;
             },
 			next: (res) => {
-				console.log('Signedup successfully', res.msg);
                 this.successMsg = 'Signed up successfully! 🎉';
                 this.errMsg = null;
                 setTimeout(() => {
@@ -53,7 +51,6 @@ export class Signup {
 	}
 
     onGoogleAuth() {
-        console.log('meee');
         window.location.href = 'http://localhost:5050/api/auth/google';
     }
 }

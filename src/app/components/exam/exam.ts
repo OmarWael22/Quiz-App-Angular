@@ -30,8 +30,9 @@ export class Exam implements OnInit{
         this.nQuestion = snapshot.queryParams['nQuestion'];
         const apiUrl: string = 'https://quiz-app-api-lac.vercel.app/api/exams';
 
-        console.log('snapshot', snapshot);
-        const userId: string = this.authService.userID;
+        let user: any = this.authService.user;
+        
+        const userId = user._id;
 
         const body = {
             categoryId: this.category,
@@ -44,13 +45,9 @@ export class Exam implements OnInit{
             withCredentials: true
         }).subscribe({
             next: (res: any) => {
-                console.log('Exam created successfully', res);
                 this.examData = res;
-                console.log('this.examData', this.examData);
                 this.questions = this.examData.data.questions;
-                console.log('this.questions', this.questions);
                 this.userAnswers = new Array(this.questions?.length).fill('');
-                console.log('this.userAnswers', this.userAnswers);
             },
             error: (error: any) => {
                 console.error('Errorrr', error);
@@ -61,9 +58,7 @@ export class Exam implements OnInit{
 
     submitExam() {
         const newExamId = this.examData?.data?.newExam?._id;
-        console.log('newExamId', newExamId);
         const gradeExamAPIURL = `https://quiz-app-api-lac.vercel.app/api/exams/grade/${newExamId}`;
-        console.log('gradeExamAPIURL', gradeExamAPIURL);
 
         const questionsResponse = [];
         for(let i = 0; i < this.questions.length; ++i) {
@@ -72,7 +67,6 @@ export class Exam implements OnInit{
                 userAns: this.userAnswers[i]
             });
         }
-        console.log('questionsResponse', questionsResponse);
 
         this.router.navigate(['/grade-exam'], {
             state: {questionsResponse: questionsResponse, apiUrl: gradeExamAPIURL}
@@ -80,8 +74,6 @@ export class Exam implements OnInit{
     }
 
     selectAnswer(questionIdx: any, choosenAnswer: any) {
-        console.log('select', choosenAnswer, questionIdx);
         this.userAnswers[questionIdx] = choosenAnswer;
-        console.log('this.userAnswers', this.userAnswers);
     }
 }

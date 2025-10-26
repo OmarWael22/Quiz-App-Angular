@@ -18,17 +18,13 @@ export class GradeExam implements OnInit{
     constructor(private gradeExamService: GradeExamService, private router: Router) {
         const navigation = this.router.getCurrentNavigation();
         const state = navigation?.extras?.state;
-        console.log('state', state);
         this.questionsBody = state?.['questionsResponse'];
-        console.log('this.questionsBody', this.questionsBody);
         this.apiUrl = state?.['apiUrl'];
-        console.log('this.apiUrl', this.apiUrl);
     }
 
     ngOnInit(): void {
         this.gradeExamService.gradeExam(this.apiUrl, this.questionsBody).subscribe({
             next:(res) => {
-                console.log('res this.gradeExamService', res);
                 this.gradeData = res.data;
                 this.isLoading = false;
             },

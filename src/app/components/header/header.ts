@@ -23,7 +23,9 @@ export class Header{
     logout() {
         this.logoutService.logout().subscribe({
             next: (res: Response) => {
-                this.authService.clearData();
+                localStorage.removeItem("token");
+                localStorage.removeItem("user");
+                this.authService.setIsLoggedIn();
             }
         });
 

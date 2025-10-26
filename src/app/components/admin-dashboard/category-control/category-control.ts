@@ -39,7 +39,6 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
         this.categoryService.getCategories().subscribe({
         next: (data) => {
                 this.categories = data;
-                console.log(this.categories);
             this.loading = false;
         },
         error: (err) => {
@@ -86,7 +85,6 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
                 const { createdAt , updatedAt , __v , ...CategoryData } = data
             // this.loadCategories();
                 this.categories = [...this.categories, CategoryData];
-                console.log(this.categories);
             modalRef.close();
             },
         });

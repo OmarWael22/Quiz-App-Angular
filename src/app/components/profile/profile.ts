@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth-service';
 import { UserService } from '../../services/user-service';
 import { CommonModule, DatePipe, TitleCasePipe } from '@angular/common';
+import { AuthService } from '../../services/auth-service';
 
 @Component({
     selector: 'app-profile',
@@ -12,15 +12,16 @@ import { CommonModule, DatePipe, TitleCasePipe } from '@angular/common';
 export class Profile implements OnInit {
     userData: any = null;
     userExams: any = null;
-    constructor(private auth: AuthService, private userService: UserService) {}
+    constructor(private authService: AuthService, private userService: UserService) {}
 
     ngOnInit(): void {
-        const userId = this.auth.userID;
+        
+        const user = this.authService.user;
+        const userId = user._id;
 
         if (userId) {
             this.userService.getUserById(userId).subscribe({
                 next: ({ data }) => {
-                    console.log('User data fetched:', data);
                     this.userData = data;
                 },
                 error: (err) => {
@@ -30,7 +31,6 @@ export class Profile implements OnInit {
 
             this.userService.getUserExams(userId).subscribe({
                 next: ({ data }) => {
-                    console.log('data', data);
                     this.userExams = data;
                 },
                 error: (err) => {

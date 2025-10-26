@@ -21,10 +21,12 @@ export class Login {
     onSubmit(e: Event) {
         this.loginService.login(this.email, this.password).subscribe({
             next: (res) => {
-                console.log('Logged in successfully!', res);
                 this.successMsg = 'Logged in successfully! 🎉';
+                localStorage.setItem("token",  res.data.token);
                 const user: any = res.data.user;
-                this.authService.fillData(user._id, user.name, user.email, user.role, res.data.token);
+                localStorage.setItem("user", JSON.stringify(user));
+                // this.authService.fillData(user._id, user.name, user.email, user.role, res.data.token);
+                this.authService.setIsLoggedIn();
                 setTimeout(() => {
                     this.router.navigate(['/']);
                 }, 2000);

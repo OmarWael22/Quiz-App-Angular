@@ -45,7 +45,6 @@ export class QuestionControl {
         this.questionService.getCategories().subscribe({
         next: (data) => {
                 this.questions = data;
-                console.log(this.questions);
             this.loading = false;
         },
         error: (err) => {
@@ -61,7 +60,6 @@ export class QuestionControl {
         next: (data) => {
                 this.categories = data;
                 this.loading = false;
-            console.log(this.categories);
         },
         error: (err) => {
             console.error(err);
@@ -123,7 +121,6 @@ export class QuestionControl {
                 const { createdAt , updatedAt , __v , ...QuestionData } = data
             // this.loadQuestions();
                 this.questions = [...this.questions, QuestionData];
-                console.log(this.questions);
             modalRef.close();
             },
         });
