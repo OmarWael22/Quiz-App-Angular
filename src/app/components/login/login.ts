@@ -25,7 +25,6 @@ export class Login {
                 localStorage.setItem("token",  res.data.token);
                 const user: any = res.data.user;
                 localStorage.setItem("user", JSON.stringify(user));
-                // this.authService.fillData(user._id, user.name, user.email, user.role, res.data.token);
                 this.authService.setIsLoggedIn();
                 setTimeout(() => {
                     this.router.navigate(['/']);

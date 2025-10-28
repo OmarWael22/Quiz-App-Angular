@@ -67,6 +67,11 @@ export const routes: Routes = [
 		title: 'Exam',
         canActivate: [authGuard]
 	},
+    {
+        path: 'auth/callback',
+        loadComponent: () => import('./components/auth-redirect/auth-redirect').then(m => m.AuthRedirect),
+        title: 'Authenticating...'
+    },
 	{
 		path: '**',
 		loadComponent: () => import('./components/not-found/not-found').then(m => m.NotFound),

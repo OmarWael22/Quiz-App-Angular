@@ -16,13 +16,14 @@ export class AuthService {
         return this.isLoggedIn();
     }
 
-    private googleAuthUrl = 'http://localhost:5050/api/auth/google';
+    private googleAuthUrl = 'https://quiz-app-api-lac.vercel.app/api/auth/google';
 
     setIsLoggedIn() {
         if(localStorage.getItem("token") != null) {
             this.isLoggedIn.set(true);
             const storedUser = localStorage.getItem("user");
-            if(storedUser) {
+            console.log('storedUser', storedUser);
+            if(storedUser && storedUser !== undefined) {
                 this.user = JSON.parse(storedUser);
             }
         }

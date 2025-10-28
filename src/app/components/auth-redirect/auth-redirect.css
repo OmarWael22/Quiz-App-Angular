@@ -1,0 +1,58 @@
+.redirect-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #4f46e5, #06b6d4);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.redirect-card {
+    background: white;
+    padding: 40px 60px;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    color: #333;
+    max-width: 400px;
+    width: 90%;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #e0e0e0;
+    border-top: 5px solid #4f46e5;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    animation: spin 1s linear infinite;
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+}
+
+p {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

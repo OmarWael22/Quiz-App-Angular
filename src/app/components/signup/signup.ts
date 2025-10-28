@@ -51,6 +51,6 @@ export class Signup {
 	}
 
     onGoogleAuth() {
-        window.location.href = 'http://localhost:5050/api/auth/google';
+        window.location.href = 'https://quiz-app-api-lac.vercel.app/api/auth/google';
     }
 }
